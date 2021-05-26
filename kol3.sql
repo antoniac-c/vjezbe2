@@ -77,3 +77,25 @@ alter table ostavljena add foreign key (prijatelj) references prijatelj (sifra);
 alter table prijatelj_brat add foreign key (prijatelj) references prijatelj (sifra);
 alter table prijatelj_brat add foreign key (brat)references brat (sifra);
 
+#u tablice snasa, ostavljena i prijatelj_brat unesite po tri retka
+ 
+
+insert into ostavljena (modelnaocala)values
+('dior'),('rayban'),('disel');
+
+select * from ostavljena;
+insert into snasa (kuna,eura,ostavljena) values
+(20.1,50.2,1),
+(30.8,25.3,2),
+(51.2,25.5,3);
+
+select * from snasa;
+
+insert into prijatelj (indiferentno) values
+(true),(false),(true);
+
+insert into brat (ogrlica,ekstrovertno) values
+(1,true),(2,false),(3,false);
+
+insert into prijatelj_brat (prijatelj,brat) values
+(1,1),(2,2),(3,3);
