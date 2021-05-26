@@ -5,11 +5,14 @@ use kol3;
 create table svekar (
 sifra int not null primary key auto_increment,
 novcica decimal (16.8) not null,
+suknja varchar (44) not null,
 bojakose varchar (34),
 prstena int,
 narukvica int not null,
 cura int not null
 );
+
+select * from svekar;
 
 create table cura (
 sifra int not null primary key auto_increment,
@@ -99,3 +102,43 @@ insert into brat (ogrlica,ekstrovertno) values
 
 insert into prijatelj_brat (prijatelj,brat) values
 (1,1),(2,2),(3,3);
+
+#u tablici svekar postavite svima zapisima kolonu suknja na vrijednost osijek
+
+update svekar set suknja = 'Osijek';
+select * from svekar ;
+
+# u tablici punica obrišite sve zapise èija je vrijednost kolone kratkamajica jednako AB
+
+delete from punica where kratkamajica ='AB';
+
+#izlistajte majica iz tablice ostavljena uz uvijet da vrijednost kolone lipa 9,10,20,30
+#ili 35
+
+select majica from ostavljena where lipa <>9 and 10 and 20 and 30 and 35;
+select * from ostavljena ;
+
+#prikažite ekstrovertno iz tablice brat , vesta iz tablice punica
+ #te kuna iz tablice snasa uz uvijet da su vrijednosti kolone lipa
+#iz tablice ostavljena razlièito od 91 te da su vrijednosti kolone haljina
+#iz tablice prijatelj sadrže niz znakova ba. podatke posložiti po
+# kuna iz tablice snasa silazno.
+
+
+select f.ekstrovertno ,a.vesta ,b.kuna 
+from punica a inner join snasa b on a.snasa = b.sifra
+inner join ostavljena c on b.ostavljena=c.sifra 
+inner join prijatelj d on c.prijatelj  =d.sifra 
+inner join prijatelj_brat e on e.prijatelj = d.sifra 
+inner join brat f on e.brat = f.sifra 
+where c.lipa <> '91' and d.haljina like '%ba%'
+order by b.snasa desc ;
+
+
+
+
+
+
+
+
+
